@@ -9,14 +9,17 @@ const path = require('path');
 const app = express();
 
 /**
- * DataBase  Setup
+ * DataBase  Setup//'mongodb+srv://uploadimage:uploadimage@cluster0-covbc.mongodb.net/uploadimage?retryWrites=true&w=majority',
  */
 
-mongoose.connect('mongodb+srv://uploadimage:uploadimage@cluster0-covbc.mongodb.net/uploadimage?retryWrites=true&w=majority', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useCreateIndex: true
-});
+mongoose.connect(
+  process.env.MONGO_URL, 
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true
+  }
+);
 
 app.use(express.json());
 
