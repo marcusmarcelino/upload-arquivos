@@ -13,7 +13,7 @@ routes.post("/posts", multer(multerConfig).single('file'), async (req, res) => {
     key,
     url: '',
   });
-  
+  console.log(post);
   return res.json(post);
 });
 
