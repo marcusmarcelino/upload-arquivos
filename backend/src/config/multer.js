@@ -1,6 +1,8 @@
 const multer = require('multer');
 const path = require('path');
 const crypto = require('crypto');
+const aws = require('aws-sdk');
+const multerS3 = require('multer-s3');
 
 module.exports = {
   dest: path.resolve(__dirname, '..', '..', 'tmp', 'uploads'),
@@ -11,9 +13,7 @@ module.exports = {
     filename: (req, file, cb) => {
       crypto.randomBytes(16, (err, hash) =>{
         if(err) cb(err);
-
         const fileName = `${hash.toString('hex')}-${file.originalname}`;
-
         cb(null, fileName);
       });
     },
