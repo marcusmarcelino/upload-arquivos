@@ -3,7 +3,7 @@ import { Container, FileInfo, Preview } from './styles';
 import { CircularProgressbar } from 'react-circular-progressbar';
 import {MdCheckCircle, MdError, MdLink} from 'react-icons/md';
 
-const FileList = ({ files }) => (
+const FileList = ({ files,  onDelete}) => (
   <Container>
     {files.map(uploadedFile => (
       <li key={uploadedFile.id}>
@@ -14,7 +14,9 @@ const FileList = ({ files }) => (
             <span>
               {uploadedFile.readableSize} 
               { !!uploadedFile.url && (
-                <button onClick={() => {}}>Ecluir</button>
+                <button onClick={() => onDelete(uploadedFile.id)}>
+                  Ecluir
+                </button>
               )}
             </span>
           </div>
@@ -35,7 +37,7 @@ const FileList = ({ files }) => (
 
           {uploadedFile.url && (
             <a 
-              href="https://upimagekd.s3.amazonaws.com/8a26980ff4f032bfb42316d4d6a9d615-b.jpg"
+              href={uploadedFile.url}
               target="_blank"
               rel="noopener noreferrer"
             >
